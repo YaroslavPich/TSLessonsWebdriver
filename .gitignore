@@ -3,3 +3,4 @@
 !test/
 !test/specs/
 !test/specs/test.e2e.js
+!dz_test_one.js

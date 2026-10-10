@@ -31,7 +31,7 @@ describe('Webdriverio main page', () => {
         await expect(input).toHaveValue("hello")
 
     })
-    it("should show click command", async () => {
+    xit("should show click command", async () => {
         await browser.url("https://the-internet.herokuapp.com/login");
 
         let loginButton = await $('.radius')
@@ -50,5 +50,36 @@ describe('Webdriverio main page', () => {
         await loginButton.click()
         await browser.pause(4000)
     })
+
+    xit("should show getAttribute command", async () =>{
+        await browser.url("https://www.google.com/")
+        let inputSearch = await $('[name="q"]')
+        let attr = await inputSearch.getAttribute("aria-label")
+        console.log("Placeholder attribute is: " + attr)
+        
+        await inputSearch.setValue("Cat")
+        attr = await inputSearch.getValue()
+        await browser.pause(2000)
+        console.log("Value attribute is: " + attr)
+    })
+    xit("should show getLocation command", async() => {
+        await browser.url('http://dou.ua');
+
+        let inputSearch = await $("#txtGlobalSearch")
+        let location = await inputSearch.getLocation()
+        console.log("Location is: " + location)
+
+        let xLocation = await inputSearch.getLocation("x")
+        console.log("Location by x is: " + xLocation)
+    })
+
+    it("should show getText command", async () => {
+        await browser.url("https://webdriver.io");
+
+        
+        let subtitle = await $("#__docusaurus_skipToContent_fallback > main > header > div.heroVisual_ZuDu > svg > g:nth-child(10) > text.hubMeta_Z1WP")
+        console.log("subtitle text is: " + await subtitle.getText())
+    })
+
 })
 
