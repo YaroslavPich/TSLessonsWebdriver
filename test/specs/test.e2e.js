@@ -73,13 +73,40 @@ describe('Webdriverio main page', () => {
         console.log("Location by x is: " + xLocation)
     })
 
-    it("should show getText command", async () => {
+    xit("should show getText command", async () => {
         await browser.url("https://webdriver.io");
 
         
         let subtitle = await $("#__docusaurus_skipToContent_fallback > main > header > div.heroVisual_ZuDu > svg > g:nth-child(10) > text.hubMeta_Z1WP")
         console.log("subtitle text is: " + await subtitle.getText())
     })
+
+    xit("should show if an element is clickable", async () =>{
+        await browser.url('https://webdriver.io');
+        
+        const blogButton = await $('.DocSearch-Button')
+        let clickable = await blogButton.isClickable()
+        console.log("Is clickable: " + clickable)
+    })
+
+    xit("should show if an element is displayed", async () => {
+        await browser.url('https://webdriver.io');
+
+        const blogButton = await $$('.footer__link-item')
+        let displayed = await blogButton[0].isDisplayed()
+        console.log("Is displayed: " + displayed)
+    })
+
+    it("should show if an element is visible", async () => {
+        await browser.url('https://webdriver.io');
+
+        const trademarkLink = await $('a[href="https://trademark-list.openjsf.org"]')
+        let displayedInViewport = await trademarkLink.isDisplayed()
+        console.log("Is trademark link displayed in viewport: " + displayedInViewport)
+
+    })
+
+
 
 })
 
