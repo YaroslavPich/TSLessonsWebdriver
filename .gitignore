@@ -1,0 +1,5 @@
+*
+!.gitignore
+!test/
+!test/specs/
+!test/specs/test.e2e.js
