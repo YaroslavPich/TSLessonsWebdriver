@@ -97,7 +97,7 @@ describe('Webdriverio main page', () => {
         console.log("Is displayed: " + displayed)
     })
 
-    it("should show if an element is visible", async () => {
+    xit("should show if an element is visible", async () => {
         await browser.url('https://webdriver.io');
 
         const trademarkLink = await $('a[href="https://trademark-list.openjsf.org"]')
@@ -105,7 +105,74 @@ describe('Webdriverio main page', () => {
         console.log("Is trademark link displayed in viewport: " + displayedInViewport)
 
     })
+    xit("should show if an element is enabled", async () => {
+    await browser.url('https://webdriver.io')
 
+        const getStartedButton = await $('#tab-mobile')
+        let isEnabled = await getStartedButton.isEnabled()
+        console.log("Is get started button enabled: " + isEnabled)
+    })
+
+    xit("should show if an element is focused", async () => {
+        await browser.url('https://webdriver.io');
+
+        const getStartedButton = await $('#tab-mobile')
+        let isFocused = await getStartedButton.isFocused();
+        console.log("Is get started button focused before click: " + isFocused)
+        await browser.pause(2000)
+        await getStartedButton.click()
+        console.log("Is get started button focused after click: " + isFocused)
+        await browser.pause(2000)
+    })
+
+    xit("should show movement to element action", async () => {
+    await browser.url('https://webdriver.io');
+
+    const getStartedLink = await $('.footer__link-item[href="/docs/gettingstarted"]')
+    await browser.pause(2000)
+    await getStartedLink.scrollIntoView()
+    await browser.pause(2000)
+    })
+
+    xit("should show save screenshot command", async () => {
+        await browser.url('https://webdriver.io');
+
+        const getStartedLink = await $('.footer__link-item[href="/docs/gettingstarted"]')
+        await browser.pause(2000)
+        await getStartedLink.scrollIntoView()
+        await browser.pause(2000)
+        await getStartedLink.saveScreenshot('linkScreenshot.png')
+    })
+
+
+    xit("should switch to another window", async () => {
+        await browser.url('https://webdriver.io')
+
+        await browser.newWindow('https://google.com')
+        await browser.pause(2000)
+
+        await browser.switchWindow('https://webdriver.io')
+        await browser.pause(2000)
+    }) // `switchWindow` was removed for WebDriver BiDi sessions in WebdriverIO v10.
+
+
+    xit("should show waitUntil command", async () => {
+        await browser.url('https://webdriver.io')
+
+        await browser.waitUntil(async () => {
+            return $('.footer__link-item[href="/docs/gettingstarted"]').isDisplayed();
+        }, 5000, "Button is not displayed")
+    })
+
+    xit("should get html for certain elements", async () => {
+        await browser.url('https://webdriver.io');
+
+        const outerHTML = await $('.dropdown__menu').getHTML()
+        console.log("outerHTML :" + outerHTML)
+
+        const innerHTML = await $('.dropdown__menu').getHTML({ includeSelectorTag: false })
+        console.log("innerHTML :" + innerHTML)
+    })
 
 
 })

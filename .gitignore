@@ -4,3 +4,5 @@
 !test/specs/
 !test/specs/test.e2e.js
 !test/specs/dz_test_one.js
+!linkScreenshot.png
+!test/specs/dz_test_two.js
